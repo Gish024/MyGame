@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 
 import Card from '../components/Card';
 
-const GameScreen = () => {
+const GameScreen = ({handleResult}) => {
   const [currentGuess, setCurrentGuess] = useState();
 
   useEffect(() => {
@@ -14,10 +14,10 @@ const GameScreen = () => {
   return (
     <View style={styles.container}>
       <Text>La suposición del oponente</Text>
-      <Text>{currentGuess}</Text>
+      <Text style={{ fontSize: 20, paddingTop: 10 }}>{currentGuess}</Text>
       <Card newStyles={styles.buttonContainer}>
-        <Button title="Menor" />
-        <Button title="Mayor" />
+        <Button title="Menor" onPress={() => handleResult('lower', currentGuess)}/>
+        <Button title="Mayor" onPress={() => handleResult('greater', currentGuess)}/>
       </Card>
     </View>
   );
@@ -28,14 +28,15 @@ export default GameScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 10,
+    padding: 20,
     alignItems: "center",
   },
   buttonContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginTop: 20,
-    width: 300,
+    marginTop: 30,
+    width: '60%',
+    height: '15%',
   },
 
 });
